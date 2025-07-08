@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rooms & Facilities - CEYLAN TREES</title>
+  <style>
+    /* Color Palette from logo.png (used in index.html):
+       Background: #EFEBE0 (light beige)
+       Accent (Leaves/Hands): #848C6B (olive green)
+       Text (CEYLAN TREES): #6A605B (darker brown-grey)
+    */
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #EFEBE0, #F8F5EB); /* Subtle gradient for body */
+      color: #333;
+    }
+
+    /* Header Styling */
+    header {
+      background-color: #EFEBE0; /* Light beige from logo */
+      color: #6A605B; /* Darker brown-grey from logo */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 50px; /* Increased padding */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* More prominent shadow */
+      position: sticky; /* Make header sticky */
+      top: 0;
+      z-index: 1000;
+    }
+
+    header img {
+      height: 70px; /* Slightly larger logo */
+      border-radius: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin-left: 30px; /* Increased spacing */
+    }
+
+    nav ul li a {
+      color: #6A605B; /* Darker brown-grey from logo */
+      text-decoration: none;
+      padding: 12px 18px; /* Increased padding */
+      border-radius: 5px;
+      transition: background 0.3s ease, color 0.3s ease;
+      font-weight: 600; /* Bolder font */
+      position: relative;
+      overflow: hidden; /* For underline effect */
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%; /* Start from the center */
+      transform: translateX(-50%) scaleX(0); /* ScaleX(0) to hide it initially, translateX(-50%) to center */
+      width: 100%; /* Take full width of parent link */
+      height: 3px;
+      background-color: #848C6B; /* Olive green from logo for underline */
+      border-radius: 2px;
+      transition: transform 0.3s ease-out;
+    }
+
+    nav ul li a:hover::after {
+      transform: translateX(-50%) scaleX(1); /* ScaleX(1) to show it on hover, keeping it centered */
+    }
+
+    nav ul li a:hover {
+      color: #848C6B; /* Olive green on hover */
+      background-color: rgba(132, 140, 107, 0.1); /* Subtle background on hover */
+    }
+
+    /* Page Hero Section - Simple title section without background image */
+    .page-hero {
+      background: linear-gradient(135deg, #EFEBE0 0%, #F8F5EB 100%);
+      padding: 80px 50px;
+      text-align: center;
+      margin-bottom: 50px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .page-hero-content h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+      color: #6A605B;
+      font-weight: 700;
+      letter-spacing: 1px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .page-hero-content h1::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -15px;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background-color: #848C6B;
+      border-radius: 2px;
+    }
+
+    .page-hero-content p {
+      font-size: 20px;
+      margin: 0;
+      margin-top: 30px;
+      color: #6A605B;
+      line-height: 1.5;
+    }
+
+    /* Rooms Section */
+    .room-section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 80px 20px; /* Increased padding */
+      text-align: center;
+      background-color: #FDFDFD; /* Near white for content section */
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Soft shadow */
+      border-radius: 10px; /* Slightly rounded corners */
+      margin-bottom: 50px;
+    }
+
+    .room-section h2 {
+      font-size: 36px; /* Larger heading */
+      margin-bottom: 60px; /* More space below heading */
+      color: #6A605B; /* Darker brown-grey from logo */
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+
+    .room-section h2::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -15px;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: #848C6B; /* Olive green underline */
+      border-radius: 2px;
+    }
+
+    .room {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      background-color: white;
+      border-radius: 12px; /* More rounded corners */
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15); /* Stronger shadow */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      align-items: center; /* Vertically align image and info */
+    }
+
+    .room:hover {
+      transform: translateY(-8px); /* Lift effect on hover */
+      box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+    }
+
+    .room-images { /* Container for the single image */
+      width: 100%;
+      max-width: 500px; /* Control max width of image section */
+      box-sizing: border-box; /* Include padding in width calculations */
+    }
+
+    .room-images img {
+      width: 100%; /* Make the single image fill its container */
+      height: 250px; /* Fixed height for consistency */
+      object-fit: cover; /* Ensures image covers the area without distortion */
+      border-radius: 8px; /* Slightly less rounded for the image within the card */
+      transition: transform 0.3s ease;
+    }
+
+    .room-images img:hover {
+      transform: scale(1.05); /* Slight zoom on image hover */
+    }
+
+    .room-info {
+      flex: 1;
+      padding: 30px; /* Increased padding */
+      text-align: left; /* Align text to left */
+    }
+
+    .room-info h3 {
+      margin-top: 0;
+      font-size: 28px; /* Larger heading for room names */
+      color: #6A605B; /* Darker brown-grey from logo */
+      margin-bottom: 15px;
+    }
+
+    .room-info p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    /* Adjust layout for smaller screens */
+    @media (max-width: 800px) {
+      .room {
+        flex-direction: column; /* Stack image and info vertically */
+      }
+      .room-images {
+        max-width: 100%;
+        justify-content: center; /* Center images when stacked */
+      }
+      .room-images img {
+        width: 100%; /* Full width for images on small screens */
+      }
+      .room-info {
+        padding: 20px;
+        text-align: center; /* Center text on small screens */
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: #848C6B; /* Olive green from logo for footer */
+      color: white;
+      text-align: center;
+      padding: 25px; /* More padding */
+      font-size: 15px;
+      margin-top: 80px; /* More space above footer */
+      box-shadow: 0 -4px 8px rgba(0,0,0,0.1); /* Shadow above footer */
+    }
+    .social-icons {
+      margin-top: 20px;
+      margin-bottom: 10px; /* Added some margin for spacing */
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 28px; /* Slightly larger icons */
+      margin: 0 15px; /* Increased spacing between icons */
+      transition: color 0.3s ease, transform 0.2s ease;
+      text-decoration: none; /* Remove underline from links */
+    }
+
+    .social-icons a:hover {
+      color: #F8F5EB; /* Lighter color on hover */
+      transform: translateY(-3px);
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <img src="images/logo.png" alt="Hotel Logo">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="rooms.html">Rooms</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>Our Rooms & Facilities</h1>
+      <p>Discover comfort and elegance in every stay</p>
+    </div>
+  </section>
+
+  <section class="room-section">
+
+    <div class="room">
+      <div class="room-images">
+        <img src="images/WhatsApp Image 2025-07-08 at 17.52.45_a4be55a7.jpg" alt="Deluxe Room">
+      </div>
+      <div class="room-info">
+        <h3>Deluxe Room</h3>
+        <p>Spacious and elegantly designed with large windows, modern furniture, air conditioning, and a king-size bed. Perfect for couples or solo travelers seeking comfort and peace.</p>
+      </div>
+    </div>
+
+    <div class="room">
+      <div class="room-images">
+        <img src="images/WhatsApp Image 2025-07-08 at 17.52.45_37877ba6.jpg" alt="Family Suite">
+      </div>
+      <div class="room-info">
+        <h3>Family Suite</h3>
+        <p>Designed for families with kids or small groups. Includes two queen beds, private lounge space, and access to complimentary tea/coffee, Wi-Fi, and 24/7 service.</p>
+      </div>
+    </div>
+
+    <div class="room">
+      <div class="room-images">
+        <img src="images/WhatsApp Image 2025-07-08 at 17.52.45_fa878fdb.jpg" alt="Business Room">
+      </div>
+      <div class="room-info">
+        <h3>Business Room</h3>
+        <p>Ideal for business travelers with a comfortable work desk, strong Wi-Fi, and access to meeting room facilities. Sleek and professional ambiance with a quiet atmosphere.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 CEYLAN TREES | All Rights Reserved</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/ceylan_trees_villa?igsh=b3RoeDBxMXZibTFq" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@ceylan_trees?_t=ZS-8xrKk7QIDg1&_r=1" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/share/1DthRZ1L6t/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.booking.com/Share-USNA01" target="_blank" aria-label="Booking.com"><i class="fas fa-hotel"></i></a>
+    </div>
+  </footer>
+
+</body>
+</html>

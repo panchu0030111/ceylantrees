@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CEYLAN TREES - Luxury Hotel in Kataragama</title>
+  <style>
+    /* Color Palette from logo.png:
+       Background: #EFEBE0 (light beige)
+       Accent (Leaves/Hands): #848C6B (olive green)
+       Text (CEYLAN TREES): #6A605B (darker brown-grey)
+    */
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #EFEBE0, #F8F5EB); /* Subtle gradient for body */
+      color: #333;
+    }
+
+    /* Header Styling */
+    header {
+      background-color: #EFEBE0; /* Light beige from logo */
+      color: #6A605B; /* Darker brown-grey from logo */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 50px; /* Increased padding */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* More prominent shadow */
+      position: sticky; /* Make header sticky */
+      top: 0;
+      z-index: 1000;
+    }
+
+    header img {
+      height: 70px; /* Slightly larger logo */
+      border-radius: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin-left: 30px; /* Increased spacing */
+    }
+
+    nav ul li a {
+      color: #6A605B; /* Darker brown-grey from logo */
+      text-decoration: none;
+      padding: 12px 18px; /* Increased padding */
+      border-radius: 5px;
+      transition: background 0.3s ease, color 0.3s ease;
+      font-weight: 600; /* Bolder font */
+      position: relative;
+      overflow: hidden; /* For underline effect */
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%; /* Start from the center */
+      transform: translateX(-50%) scaleX(0); /* ScaleX(0) to hide it initially, translateX(-50%) to center */
+      width: 100%; /* Take full width of parent link */
+      height: 3px;
+      background-color: #848C6B; /* Olive green from logo for underline */
+      border-radius: 2px;
+      transition: transform 0.3s ease-out;
+    }
+
+    nav ul li a:hover::after {
+      transform: translateX(-50%) scaleX(1); /* ScaleX(1) to show it on hover, keeping it centered */
+    }
+
+    nav ul li a:hover {
+      color: #848C6B; /* Olive green on hover */
+      background-color: rgba(132, 140, 107, 0.1); /* Subtle background on hover */
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 550px; /* Taller hero section */
+      overflow: hidden;
+      margin-bottom: 50px; /* More space below hero */
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.8); /* Slightly dim the image for text contrast */
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      background-color: rgba(0, 0, 0, 0.6); /* Darker overlay for strong contrast */
+      padding: 40px 60px; /* Larger padding */
+      border-radius: 10px; /* Slightly less rounded */
+      max-width: 80%;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4); /* More prominent shadow */
+      backdrop-filter: blur(3px); /* Subtle blur effect */
+    }
+
+    .hero-text h2 {
+      font-size: 42px; /* Larger heading */
+      margin-bottom: 15px;
+      font-weight: 700; /* Bolder */
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Text shadow for depth */
+    }
+
+    .hero-text p {
+      font-size: 20px; /* Larger paragraph text */
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Highlights Section */
+    .highlights {
+      padding: 80px 50px; /* More padding */
+      background-color: #FDFDFD; /* Near white for content section */
+      text-align: center;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.05); /* Inner shadow for depth */
+    }
+
+    .highlights h2 {
+      font-size: 36px; /* Larger heading */
+      margin-bottom: 60px;
+      color: #6A605B; /* Darker brown-grey from logo */
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+
+    .highlights h2::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -15px;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: #848C6B; /* Olive green underline */
+      border-radius: 2px;
+    }
+
+    .features {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px; /* Increased gap */
+      align-items: flex-start; /* FIX: Prevents cards from stretching to match tallest card */
+    }
+
+    .features > div { /* Target direct children of .features */
+      background: white;
+      width: 380px; /* Made cards significantly wider */
+      border-radius: 12px; /* Slightly more rounded */
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15); /* Stronger shadow */
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #eee; /* Subtle border */
+      cursor: pointer; /* Indicate clickability */
+    }
+
+    .features > div:hover {
+      transform: translateY(-8px); /* More pronounced lift */
+      box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+    }
+
+    .features img {
+      width: 100%;
+      height: 250px; /* Made images taller */
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .features > div:hover img {
+      transform: scale(1.05); /* Slight zoom on image hover */
+    }
+
+    .features .card-toggle {
+        display: flex;
+        justify-content: space-between; /* Space out text and indicator */
+        align-items: center;
+        padding: 20px; /* Padding for the toggle area */
+        font-weight: 700;
+        color: #6A605B;
+        font-size: 18px;
+        min-height: 40px; /* Ensure a minimum height for clickable area */
+    }
+
+    .features .card-toggle p {
+        margin: 0; /* Remove default margin from paragraph */
+    }
+
+    /* Adjust the indicator for feature cards */
+    .features .indicator {
+        font-size: 20px;
+        color: #6A605B;
+        transition: transform 0.3s ease;
+        margin-left: 15px; /* Space from text */
+    }
+
+    .features > div.active .indicator {
+        transform: rotate(180deg);
+    }
+
+    /* Adjust dropdown content for feature cards */
+    .features .dropdown-content {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+      width: 100%;
+      text-align: left;
+      padding: 0 20px; /* Padding to match the card-toggle */
+      box-sizing: border-box;
+      font-size: 15px;
+      color: #555;
+      margin-top: -10px; /* Pull up a bit to reduce gap with text */
+      padding-bottom: 20px; /* Add padding at the bottom when open */
+      line-height: 1.4;
+    }
+
+    .features > div.active .dropdown-content {
+      max-height: 200px; /* Fallback height, JS will set specific height */
+      opacity: 1;
+    }
+
+
+    /* Info Section (Benefits & Policies) */
+    .info-section {
+      padding: 80px 50px;
+      background-color: #EFEBE0; /* Light beige background */
+      text-align: center;
+      margin-top: 50px;
+      box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+    }
+
+    .info-section h2 {
+      font-size: 36px;
+      margin-bottom: 60px;
+      color: #6A605B;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+
+    .info-section h2::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -15px;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: #848C6B;
+      border-radius: 2px;
+    }
+
+    .benefits-grid, .policies-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 50px;
+      align-items: flex-start; /* FIX: Prevents cards from stretching to match tallest card */
+    }
+
+    .benefit-item, .policy-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 200px; /* Adjust width to accommodate content and indicator */
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer; /* Indicate clickability */
+      overflow: hidden; /* Hide overflowing dropdown content initially */
+    }
+
+    .benefit-item:hover, .policy-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .benefit-item .card-toggle, .policy-item .card-toggle {
+        display: flex;
+        flex-direction: column; /* Stack icon and text */
+        align-items: center;
+        justify-content: center;
+        width: 100%; /* Take full width of the card */
+        padding-bottom: 10px; /* Space for the indicator if at bottom */
+    }
+    
+    /* Ensure the icon and text are aligned within the card-toggle */
+    .benefit-item .card-toggle .icon, .policy-item .card-toggle .icon {
+        margin-bottom: 10px; /* Space between icon and text */
+        margin-top: 5px; /* Adjust top margin for better centering */
+    }
+
+
+    .benefit-item .icon, .policy-item .icon {
+      font-size: 48px; /* Larger icons */
+      color: #848C6B; /* Olive green icon color */
+    }
+
+    .benefit-item p, .policy-item p {
+      font-size: 16px;
+      font-weight: 600;
+      color: #6A605B;
+      margin: 0;
+      text-align: center; /* Center the text */
+    }
+
+    /* General indicator styling for benefits/policies cards */
+    .benefit-item .indicator, .policy-item .indicator {
+        font-size: 20px;
+        color: #6A605B;
+        transition: transform 0.3s ease; /* Smooth rotation */
+        margin-top: 10px; /* Space from text */
+    }
+
+    .benefit-item.active .indicator,
+    .policy-item.active .indicator {
+        transform: rotate(180deg); /* Rotate when active */
+    }
+
+    /* General dropdown content styling for benefits/policies cards */
+    .benefit-item .dropdown-content, .policy-item .dropdown-content {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+      width: 100%;
+      text-align: left;
+      padding: 0 10px; /* Add some horizontal padding */
+      box-sizing: border-box; /* Include padding in width */
+      font-size: 14px;
+      color: #555;
+      margin-top: 10px; /* Space from the toggle area */
+      line-height: 1.4;
+    }
+
+    .benefit-item.active .dropdown-content,
+    .policy-item.active .dropdown-content {
+      max-height: 200px; /* Fallback height, JS will set specific height */
+      opacity: 1;
+      padding-bottom: 10px; /* Add padding at the bottom when open */
+    }
+
+    /* Footer */
+    footer {
+      background-color: #848C6B; /* Olive green from logo for footer */
+      color: white;
+      text-align: center;
+      padding: 25px; /* More padding */
+      font-size: 15px;
+      margin-top: 80px; /* More space above footer */
+      box-shadow: 0 -4px 8px rgba(0,0,0,0.1); /* Shadow above footer */
+    }
+    .social-icons {
+      margin-top: 20px;
+      margin-bottom: 10px; /* Added some margin for spacing */
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 28px; /* Slightly larger icons */
+      margin: 0 15px; /* Increased spacing between icons */
+      transition: color 0.3s ease, transform 0.2s ease;
+      text-decoration: none; /* Remove underline from links */
+    }
+
+    .social-icons a:hover {
+      color: #F8F5EB; /* Lighter color on hover */
+      transform: translateY(-3px);
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <img src="images/logo.png" alt="Hotel Logo">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="rooms.html">Rooms</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img src="images/20250708_1946_Charming Hotel Retreat_remix_01jzn64bg0e8fayw40n3b2eez3.png" alt="CEYLAN TREES - Kataragama">
+    <div class="hero-text">
+      <h2>Experience Luxury in the Heart of Kataragama</h2>
+      <p>Welcome to your perfect escape at CEYLAN TREES</p>
+    </div>
+  </section>
+
+  <section class="highlights">
+    <h2>Why Stay With Us?</h2>
+    <div class="features">
+      <div class="clickable">
+        <img src="images/hotel_front.jpg" alt="Hotel Front">
+        <div class="card-toggle">
+            <p>Elegant Architecture</p>
+            <i class="fas fa-chevron-down indicator"></i>
+        </div>
+        <div class="dropdown-content">
+            <p>Our hotel boasts stunning architectural design that blends modern luxury with traditional Sri Lankan influences, offering a unique visual experience.</p>
+        </div>
+      </div>
+      <div class="clickable">
+        <img src="images/hotel_outside.jpg" alt="Hotel Outside">
+        <div class="card-toggle">
+            <p>Prime Location</p>
+            <i class="fas fa-chevron-down indicator"></i>
+        </div>
+        <div class="dropdown-content">
+            <p>Nestled in the heart of Kataragama, our hotel provides easy access to the sacred pilgrimage sites, Yala National Park, and other local attractions.</p>
+        </div>
+      </div>
+      <div class="clickable">
+        <img src="images/interior_modern.jpg" alt="Interior">
+        <div class="card-toggle">
+            <p>Modern Interiors</p>
+            <i class="fas fa-chevron-down indicator"></i>
+        </div>
+        <div class="dropdown-content">
+            <p>Experience contemporary comfort with our thoughtfully designed interiors, featuring plush furnishings, state-of-the-art amenities, and serene aesthetics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-section">
+    <h2>CEYLAN TREES Member Benefits</h2>
+    <div class="benefits-grid">
+      <div class="benefit-item clickable">
+        <div class="card-toggle">
+          <i class="fas fa-dollar-sign icon"></i>
+          <p>Exclusive Member Rates</p>
+          <i class="fas fa-chevron-down indicator"></i>
+        </div>
+        <div class="dropdown-content">
+          <p>Unlock special pricing and discounts available only to CEYLAN TREES members. Save more on every stay!</p>
+        </div>
+      </div>
+      <div class="benefit-item clickable">
+        <div class="card-toggle">
+          <i class="fas fa-award icon"></i>
+          <p>Loyalty Points & Rewards</p>
+          <i class="fas fa-chevron-down indicator"></i>
+        </div>
+        <div class="dropdown-content">
+          <p>Earn points with every booking and redeem them for free nights, upgrades, and exclusive experiences.</p>
+        </div>
+      </div>
+      <div class="benefit-item clickable">
+        <div class="card-toggle">
+          <i class="fas fa-bed icon"></i>
+          <p>Pre-Select Your Room</p>
+          <i class="fas fa-chevron-down indicator"></i>
+        </div>
+        <div class="dropdown-content">
+          <p>Choose your preferred room or suite before arrival, subject to availability.</p>
+        </div>
+      </div>
+      <div class="benefit-item clickable">
+        <div class="card-toggle">
+          <i class="fas fa-mobile-alt icon"></i>
+          <p>Digital Check-in</p>
+          <i class="fas fa-chevron-down indicator"></i>
+        </div>
+        <div class="dropdown-content">
+          <p>Bypass the front desk and check in directly from your mobile device for a seamless arrival.</p>
+        </div>
+      </div>
+      <div class="benefit-item clickable">
+        <div class="card-toggle">
+          <i class="fas fa-ticket-alt icon"></i>
+          <p>Exclusive Experiences</p>
+          <i class="fas fa-chevron-down indicator"></i>
+        </div>
+        <div class="dropdown-content">
+          <p>Access unique local tours, activities, and dining experiences curated just for members.</p>
+        </div>
+      </div>
+      <div class="benefit-item clickable">
+        <div class="card-toggle">
+          <i class="fas fa-key icon"></i>
+          <p>Digital Room Key</p>
+          <i class="fas fa-chevron-down indicator"></i>
+        </div>
+        <div class="dropdown-content">
+          <p>Use your smartphone as your room key for convenience and security.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Hotel Policies</h2>
+    <div class="policies-grid">
+        <div class="policy-item clickable">
+            <div class="card-toggle">
+                <i class="fas fa-parking icon"></i>
+                <p>Parking</p>
+                <i class="fas fa-chevron-down indicator"></i>
+            </div>
+            <div class="dropdown-content">
+                <p>Complimentary self-parking is available for all guests. Valet parking services can be arranged upon request for an additional charge.</p>
+            </div>
+        </div>
+        <div class="policy-item clickable">
+            <div class="card-toggle">
+                <i class="fas fa-paw icon"></i>
+                <p>Pets</p>
+                <i class="fas fa-chevron-down indicator"></i>
+            </div>
+            <div class="dropdown-content">
+                <p>We are a pet-friendly hotel! Well-behaved pets are welcome with a small nightly fee. Please inquire about our pet policy for more details.</p>
+            </div>
+        </div>
+        <div class="policy-item clickable">
+            <div class="card-toggle">
+                <i class="fas fa-smoking-ban icon"></i>
+                <p>Smoking</p>
+                <i class="fas fa-chevron-down indicator"></i>
+            </div>
+            <div class="dropdown-content">
+                <p>CEYLAN TREES is a non-smoking property. Smoking is strictly prohibited in all indoor areas, including guest rooms and common spaces. Designated outdoor smoking areas are available.</p>
+            </div>
+        </div>
+        <div class="policy-item clickable">
+            <div class="card-toggle">
+                <i class="fas fa-wifi icon"></i>
+                <p>Free WiFi</p>
+                <i class="fas fa-chevron-down indicator"></i>
+            </div>
+            <div class="dropdown-content">
+                <p>Enjoy high-speed complimentary Wi-Fi access throughout the entire hotel property, including all rooms and public areas.</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 CEYLAN TREES | All Rights Reserved</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/ceylan_trees_villa?igsh=b3RoeDBxMXZibTFq" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@ceylan_trees?_t=ZS-8xrKk7QIDg1&_r=1" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/share/1DthRZ1L6t/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.booking.com/Share-USNA01" target="_blank" aria-label="Booking.com"><i class="fas fa-hotel"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Select all elements that act as clickable cards
+      const clickableCards = document.querySelectorAll('.clickable');
+
+      clickableCards.forEach(card => {
+        // Find the specific header/toggle area within the card
+        const cardToggle = card.querySelector('.card-toggle');
+        const dropdownContent = card.querySelector('.dropdown-content');
+
+        // Ensure the card has the necessary components before adding a listener
+        if (cardToggle && dropdownContent) {
+          cardToggle.addEventListener('click', (event) => {
+            // Prevent the click from bubbling to other elements
+            event.stopPropagation();
+
+            // Check if the card that was clicked was already open
+            const wasActive = card.classList.contains('active');
+
+            // Find the parent <section> of the clicked card.
+            // This is crucial to ensure we only affect cards in the same group.
+            const parentSection = card.closest('section');
+            if (parentSection) {
+              // Find all clickable cards within that parent section
+              const allCardsInSection = parentSection.querySelectorAll('.clickable');
+
+              // First, close all cards in the section by removing the 'active' class
+              // and resetting the inline max-height style.
+              allCardsInSection.forEach(otherCard => {
+                otherCard.classList.remove('active');
+                const otherDropdown = otherCard.querySelector('.dropdown-content');
+                if (otherDropdown) {
+                  // Revert to the CSS-defined height (which is 0 or null)
+                  otherDropdown.style.maxHeight = null; 
+                }
+              });
+            }
+
+            // If the card was not already active, we should open it.
+            // If it was active, the step above already closed it.
+            if (!wasActive) {
+              // Add the 'active' class to trigger the CSS for the indicator rotation and other styles
+              card.classList.add('active');
+              
+              // Set max-height with an inline style to animate to the specific height of the content.
+              // This allows for a smooth, dynamic transition.
+              dropdownContent.style.maxHeight = dropdownContent.scrollHeight + 'px';
+            }
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

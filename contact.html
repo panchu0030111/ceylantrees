@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - CEYLAN TREES</title>
+  <style>
+    /* Color Palette from logo.png (used in index.html):
+       Background: #EFEBE0 (light beige)
+       Accent (Leaves/Hands): #848C6B (olive green)
+       Text (CEYLAN TREES): #6A605B (darker brown-grey)
+    */
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #EFEBE0, #F8F5EB); /* Subtle gradient for body */
+      color: #333;
+    }
+
+    /* Header Styling */
+    header {
+      background-color: #EFEBE0; /* Light beige from logo */
+      color: #6A605B; /* Darker brown-grey from logo */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 50px; /* Increased padding */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* More prominent shadow */
+      position: sticky; /* Make header sticky */
+      top: 0;
+      z-index: 1000;
+    }
+
+    header img {
+      height: 70px; /* Slightly larger logo */
+      border-radius: 0;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin-left: 30px; /* Increased spacing */
+    }
+
+    nav ul li a {
+      color: #6A605B; /* Darker brown-grey from logo */
+      text-decoration: none;
+      padding: 12px 18px; /* Increased padding */
+      border-radius: 5px;
+      transition: background 0.3s ease, color 0.3s ease;
+      font-weight: 600; /* Bolder font */
+      position: relative;
+      overflow: hidden; /* For underline effect */
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%; /* Start from the center */
+      transform: translateX(-50%) scaleX(0); /* ScaleX(0) to hide it initially, translateX(-50%) to center */
+      width: 100%; /* Take full width of parent link */
+      height: 3px;
+      background-color: #848C6B; /* Olive green from logo for underline */
+      border-radius: 2px;
+      transition: transform 0.3s ease-out;
+    }
+
+    nav ul li a:hover::after {
+      transform: translateX(-50%) scaleX(1); /* ScaleX(1) to show it on hover, keeping it centered */
+    }
+
+    nav ul li a:hover {
+      color: #848C6B; /* Olive green on hover */
+      background-color: rgba(132, 140, 107, 0.1); /* Subtle background on hover */
+    }
+
+    /* Page Hero Section - Adjusted to match index.html's hero text styling */
+    .page-hero {
+      background: linear-gradient(135deg, #EFEBE0 0%, #F8F5EB 100%);
+      padding: 80px 50px;
+      text-align: center;
+      margin-bottom: 50px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .page-hero-content {
+      background-color: rgba(0, 0, 0, 0.05); /* Very subtle overlay, just for visual separation */
+      padding: 40px 60px;
+      border-radius: 10px;
+      max-width: 80%;
+      margin: 0 auto; /* Center the content box */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1); /* More prominent shadow */
+      backdrop-filter: blur(1px); /* Subtle blur effect */
+    }
+
+    .page-hero-content h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+      color: #6A605B;
+      font-weight: 700;
+      letter-spacing: 1px;
+      position: relative;
+      display: inline-block;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Text shadow for depth */
+    }
+
+    .page-hero-content h1::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -15px;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background-color: #848C6B;
+      border-radius: 2px;
+    }
+
+    .page-hero-content p {
+      font-size: 20px;
+      margin: 0;
+      margin-top: 30px;
+      color: #6A605B;
+      line-height: 1.5;
+    }
+
+    /* Contact Section Styling - Adapted from .highlights and .info-section */
+    .contact-section {
+      max-width: 900px;
+      margin: auto;
+      padding: 50px 30px; /* Increased padding */
+      background-color: #FDFDFD; /* Near white for content section */
+      border-radius: 12px; /* More rounded corners */
+      margin-top: 50px;
+      margin-bottom: 50px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15); /* Stronger shadow */
+      text-align: center; /* Center heading */
+    }
+
+    .contact-section h2 {
+      font-size: 36px; /* Larger heading */
+      margin-bottom: 60px;
+      color: #6A605B; /* Darker brown-grey from logo */
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+
+    .contact-section h2::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -15px;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: #848C6B; /* Olive green underline */
+      border-radius: 2px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px; /* Limit form width for better readability */
+      margin: 0 auto 40px auto; /* Center form and add bottom margin */
+      text-align: left; /* Align form elements to left */
+    }
+
+    label {
+      margin-top: 20px; /* More space above labels */
+      font-weight: 600; /* Bolder labels */
+      color: #6A605B;
+      font-size: 17px;
+    }
+
+    input, textarea {
+      padding: 12px 15px; /* More padding */
+      font-size: 16px;
+      border-radius: 8px; /* More rounded inputs */
+      border: 1px solid #ccc;
+      margin-top: 8px; /* More space below labels */
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #848C6B; /* Olive green border on focus */
+      box-shadow: 0 0 0 3px rgba(132, 140, 107, 0.2); /* Subtle glow on focus */
+      outline: none; /* Remove default outline */
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px; /* Taller textarea */
+    }
+
+    button {
+      margin-top: 30px; /* More space above button */
+      padding: 15px 25px; /* Larger button padding */
+      font-size: 18px; /* Larger font for button */
+      font-weight: 700; /* Bolder button text */
+      border: none;
+      background-color: #848C6B; /* Olive green from logo for button */
+      color: white;
+      border-radius: 8px; /* More rounded button */
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Shadow for button */
+    }
+
+    button:hover {
+      background-color: #6A725D; /* Slightly darker olive on hover */
+      transform: translateY(-2px); /* Slight lift on hover */
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .info {
+      margin-top: 50px; /* More space above info section */
+      background-color: #EFEBE0; /* Light beige background for info box */
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center; /* Center content of info box */
+      max-width: 500px; /* Limit info box width */
+      margin-left: auto; /* Center the box */
+      margin-right: auto; /* Center the box */
+    }
+
+    .info h3 {
+      font-size: 26px; /* Larger heading */
+      color: #6A605B;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .info h3::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -10px;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: #848C6B;
+      border-radius: 1.5px;
+    }
+
+    .info p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #444;
+      margin-top: 30px; /* Space from heading */
+    }
+
+    /* Adjust layout for smaller screens */
+    @media (max-width: 800px) {
+      header {
+        padding: 15px 20px;
+      }
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      nav ul li {
+        margin: 10px 0;
+      }
+      .page-hero {
+        padding: 60px 20px;
+      }
+      .page-hero-content {
+        padding: 30px;
+        max-width: 95%;
+      }
+      .page-hero-content h1 {
+        font-size: 36px;
+      }
+      .page-hero-content p {
+        font-size: 18px;
+      }
+      .contact-section {
+        padding: 30px 20px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+      .contact-section h2 {
+        font-size: 30px;
+        margin-bottom: 40px;
+      }
+      form {
+        max-width: 100%;
+      }
+      button {
+        padding: 12px 20px;
+        font-size: 16px;
+      }
+      .info {
+        padding: 25px;
+        margin-top: 30px;
+      }
+      .info h3 {
+        font-size: 22px;
+      }
+      .info p {
+        font-size: 16px;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background-color: #848C6B; /* Olive green from logo for footer */
+      color: white;
+      text-align: center;
+      padding: 25px; /* More padding */
+      font-size: 15px;
+      margin-top: 80px; /* More space above footer */
+      box-shadow: 0 -4px 8px rgba(0,0,0,0.1); /* Shadow above footer */
+    }
+    .social-icons {
+      margin-top: 20px;
+      margin-bottom: 10px; /* Added some margin for spacing */
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 28px; /* Slightly larger icons */
+      margin: 0 15px; /* Increased spacing between icons */
+      transition: color 0.3s ease, transform 0.2s ease;
+      text-decoration: none; /* Remove underline from links */
+    }
+
+    .social-icons a:hover {
+      color: #F8F5EB; /* Lighter color on hover */
+      transform: translateY(-3px);
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <img src="images/logo.png" alt="Hotel Logo">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="rooms.html">Rooms</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <h1>Contact CEYLAN TREES</h1>
+      <p>We're here to assist you with any inquiries or booking needs.</p>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <h2>Get in Touch</h2>
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" id="name" placeholder="Your full name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="your@email.com" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" placeholder="Your message here..." required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div class="info">
+      <h3>Hotel Address & Contacts</h3>
+      <p>
+        CEYLAN TREES<br>
+        Kukul katuwa lake rd, Kataragama, Sri Lanka<br>
+        Phone: 076 569 6278<br>
+        Email: ceylankatharagama@gmail.com
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 CEYLAN TREES | All Rights Reserved</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/ceylan_trees_villa?igsh=b3RoeDBxMXZibTFq" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@ceylan_trees?_t=ZS-8xrKk7QIDg1&_r=1" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/share/1DthRZ1L6t/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.booking.com/Share-USNA01" target="_blank" aria-label="Booking.com"><i class="fas fa-hotel"></i></a>
+    </div>
+  </footer>
+
+</body>
+</html>
